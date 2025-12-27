@@ -1,10 +1,25 @@
 #include <Render2D.h>
+#include <Core/Entrypoint.h>
 
-#include <iostream>
+#include "SandboxLayer.h"
 
-int main(int argc, char** argv)
+class Sandbox : public Render2D::Application
 {
-    Render2D::Print();
-    std::cin.ignore();
-    return 0;
+public:
+    Sandbox(const Render2D::ApplicationSpecifics& specs = Render2D::ApplicationSpecifics())
+        : Application(specs) { }
+    ~Sandbox() { }
+};
+
+Render2D::Application* CreateApplication()
+{
+    Render2D::ApplicationSpecifics appSpecs;
+    appSpecs.Title = "Sandbox";
+	appSpecs.Window.Width = 1920;
+	appSpecs.Window.Height = 1080;
+	appSpecs.Window.UseVSync = true;
+
+    Render2D::Application* app = new Sandbox(appSpecs);
+    app->PushLayer<SandboxLayer>();
+    return app;
 }

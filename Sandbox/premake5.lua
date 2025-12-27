@@ -23,6 +23,11 @@ project "Sandbox"
         "../%{IncludeDir.glm}"
     }
 
+    defines
+    {
+        "BUILD_APP"
+    }
+
     links
     {
         "Render2D",
