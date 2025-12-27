@@ -4,6 +4,8 @@
 Render2D is an object-oriented 2D rendering framework built with **C++ (2023 standard)** and **OpenGL 4.6 Core Profile**, designed to be modular, extensible, and easy to experiment with.  
 The project is split into a reusable rendering library and a sandbox application that demonstrates its usage.
 
+![Preview](img/Preview.png)
+
 ---
 
 ## Key Goals
