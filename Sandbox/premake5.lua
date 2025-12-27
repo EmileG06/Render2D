@@ -8,6 +8,8 @@ project "Sandbox"
     targetdir ("../bin/" .. outputdir .. "/%{prj.name}")
     objdir ("../bin-int/" .. outputdir .. "/%{prj.name}")
 
+    flags { "MultiProcessorCompile" }
+
     files
     {
         "src/**.h",

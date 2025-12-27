@@ -8,6 +8,8 @@ project "Render2D"
     targetdir ("../bin/" .. outputdir .. "/%{prj.name}")
     objdir ("../bin-int/" .. outputdir .. "/%{prj.name}")
 
+    flags { "MultiProcessorCompile" }
+
     files
     {
         "src/**.h",
@@ -18,6 +20,7 @@ project "Render2D"
     includedirs
     {
         "src",
+        "src/vendor",
         "../%{IncludeDir.GLFW}",
         "../%{IncludeDir.glad}",
         "../%{IncludeDir.glm}"

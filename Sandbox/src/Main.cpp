@@ -1,7 +1,7 @@
 #include <Render2D.h>
 #include <Core/Entrypoint.h>
 
-#include "SandboxLayer.h"
+#include "Layers/BlueCubeLayer.h"
 
 class Sandbox : public Render2D::Application
 {
@@ -20,6 +20,6 @@ Render2D::Application* CreateApplication()
 	appSpecs.Window.UseVSync = true;
 
     Render2D::Application* app = new Sandbox(appSpecs);
-    app->PushLayer<SandboxLayer>();
+    app->PushLayer<BlueCubeLayer>();
     return app;
 }

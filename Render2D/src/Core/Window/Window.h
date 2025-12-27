@@ -29,8 +29,6 @@ namespace Render2D
 
 		void RaiseEvent(Event& event);
 
-		void UpdateSize(int32_t width, int32_t height);
-
 		bool ShouldClose();
 
 		GLFWwindow* GetHandle() const { return m_Handle; }

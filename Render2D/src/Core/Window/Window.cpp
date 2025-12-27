@@ -13,13 +13,6 @@ namespace Render2D
 {
 	static bool s_GLFWInit = false;
 
-	static void FramebufferSizeCallback(GLFWwindow* window, int32_t width, int32_t height)
-	{
-		auto& windowRef = Application::Get().GetWindow();
-		windowRef->UpdateSize(width, height);
-		glViewport(0, 0, width, height);
-	}
-
 	Window::Window(const WindowSpecification& specs)
 		: m_Specs(specs)
 	{
@@ -76,6 +69,11 @@ namespace Render2D
 		glfwSetFramebufferSizeCallback(m_Handle, [](GLFWwindow* handle, int32_t width, int32_t height)
 			{
 				Window& window = *((Window*)glfwGetWindowUserPointer(handle));
+
+				window.m_Specs.Width = width;
+				window.m_Specs.Height = height;
+
+				glViewport(0, 0, width, height);
 
 				WindowResizedEvent event = WindowResizedEvent(static_cast<float>(width), static_cast<float>(height));
 				window.RaiseEvent(event);
@@ -140,6 +138,9 @@ namespace Render2D
 				window.RaiseEvent(event);
 			});
 
+		glViewport(0, 0, m_Specs.Width, m_Specs.Height);
+		glEnable(GL_DEPTH_TEST);
+
 		LOG_INFO("Window created -> {0} [{1}, {2}]", 
 			m_Specs.Title, m_Specs.Width, m_Specs.Height);
 	}
@@ -154,12 +155,6 @@ namespace Render2D
 	{
 		if (m_Specs.EventCallback)
 			m_Specs.EventCallback(event);
-	}
-
-	void Window::UpdateSize(int32_t width, int32_t height)
-	{
-		m_Specs.Width = width;
-		m_Specs.Height = height;
 	}
 
 	bool Window::ShouldClose()
